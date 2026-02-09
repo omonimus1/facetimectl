@@ -7,7 +7,7 @@ class Facetimectl < Formula
   head "https://github.com/omonimus1/facetimectl.git", branch: "master"
 
   depends_on xcode: ["16.0", :build]
-  depends_on :macos => :sonoma
+  depends_on macos: :sonoma
 
   def install
     system "swift", "build", "--disable-sandbox", "-c", "release", "--product", "facetimectl"
