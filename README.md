@@ -1,5 +1,8 @@
 # facetimectl
 AI agents meet FaceTime 📞
+[![CodeQL](https://github.com/omonimus1/facetimectl/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/omonimus1/facetimectl/actions/workflows/github-code-scanning/codeql)
+[![CI](https://github.com/omonimus1/facetimectl/actions/workflows/ci.yml/badge.svg)](https://github.com/omonimus1/facetimectl/actions/workflows/ci.yml)
+[![Dependabot Updates](https://github.com/omonimus1/facetimectl/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/omonimus1/facetimectl/actions/workflows/dependabot/dependabot-updates)
 
 Fast CLI for FaceTime on macOS - make calls from the terminal.
 
