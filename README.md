@@ -1,11 +1,9 @@
 # facetimectl
-
 AI agents meet FaceTime 📞
 
 Fast CLI for FaceTime on macOS - make calls from the terminal.
 
 ## Features
-
 - 📞 Make FaceTime audio/video calls from command line
 - 📇 Search and list contacts
 - 📊 Check call status
@@ -14,12 +12,21 @@ Fast CLI for FaceTime on macOS - make calls from the terminal.
 
 ## Install
 
+### Homebrew (Recommended)
+```bash
+brew tap omonimus1/facetimectl
+brew install facetimectl
+```
+
 ### From source
 ```bash
+git clone https://github.com/omonimus1/facetimectl.git
 cd facetimectl
 make build
 # binary at ./bin/facetimectl
 ```
+
+> **Note:** See [brew-release.md](brew-release.md) for complete Homebrew publishing instructions.
 
 ## Requirements
 
