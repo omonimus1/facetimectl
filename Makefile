@@ -19,6 +19,7 @@ lint:
 	swift format lint --recursive Sources Tests
 
 test:
+	scripts/generate-version.sh
 	swift test
 
 check:
@@ -26,12 +27,14 @@ check:
 	$(MAKE) test
 
 build:
+	scripts/generate-version.sh
 	mkdir -p bin
 	swift build -c release --product facetimectl
 	cp .build/release/facetimectl bin/facetimectl
 	codesign --force --sign - --identifier com.steipete.facetimectl bin/facetimectl
 
 facetimectl:
+	scripts/generate-version.sh
 	swift package clean
 	swift build -c debug --product facetimectl
 	./.build/debug/facetimectl $(ARGS)

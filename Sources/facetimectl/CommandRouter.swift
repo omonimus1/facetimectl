@@ -4,11 +4,12 @@ import Foundation
 
 struct CommandRouter {
   let rootName = "facetimectl"
-  let version = "0.1.0"
+  let version: String
   let specs: [CommandSpec]
   let program: Program
   
   init() {
+    self.version = CommandRouter.resolveVersion()
     self.specs = [
       CallCommand.spec,
       ContactsCommand.spec,
@@ -105,5 +106,12 @@ struct CommandRouter {
       path.append(token)
     }
     return path
+  }
+  
+  private static func resolveVersion() -> String {
+    if let envVersion = ProcessInfo.processInfo.environment["FACETIMECTL_VERSION"], !envVersion.isEmpty {
+      return envVersion
+    }
+    return RemindctlVersion.current
   }
 }

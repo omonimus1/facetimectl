@@ -2,25 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>CFBundleIdentifier</key>
-  <string>com.steipete.facetimectl</string>
-  <key>CFBundleName</key>
-  <string>facetimectl</string>
-  <key>CFBundleExecutable</key>
-  <string>facetimectl</string>
-  <key>CFBundlePackageType</key>
-  <string>APPL</string>
-  <key>CFBundleShortVersionString</key>
-  <string>0.1.0</string>
-  <key>CFBundleVersion</key>
-  <string>0.1.0</string>
-  <key>NSContactsUsageDescription</key>
-  <string>Access your contacts to initiate FaceTime calls.</string>
-  <key>NSAppleEventsUsageDescription</key>
-  <string>Control FaceTime to make and manage calls from the terminal.</string>
-  <key>NSCameraUsageDescription</key>
-  <string>FaceTime requires camera access for video calls.</string>
-  <key>NSMicrophoneUsageDescription</key>
-  <string>FaceTime requires microphone access for audio calls.</string>
+	<key>CFBundleExecutable</key>
+	<string>facetimectl</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.steipete.facetimectl</string>
+	<key>CFBundleName</key>
+	<string>facetimectl</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1.0</string>
+	<key>CFBundleVersion</key>
+	<string>0.1.0</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Control FaceTime to make and manage calls from the terminal.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>FaceTime requires camera access for video calls.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Access your contacts to initiate FaceTime calls.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>FaceTime requires microphone access for audio calls.</string>
 </dict>
 </plist>
