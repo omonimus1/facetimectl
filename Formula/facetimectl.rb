@@ -6,12 +6,12 @@ class Facetimectl < Formula
   license "MIT"
   head "https://github.com/omonimus1/facetimectl.git", branch: "master"
 
-  depends_on xcode: ["14.0", :build]
+  depends_on xcode: ["16.0", :build]
   depends_on :macos => :sonoma
 
   def install
-    system "make", "build"
-    bin.install "bin/facetimectl"
+    system "swift", "build", "--disable-sandbox", "-c", "release", "--product", "facetimectl"
+    bin.install ".build/release/facetimectl"
   end
 
   test do
