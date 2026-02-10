@@ -58,6 +58,17 @@ struct CommandRouter {
       do {
         try await spec.run(invocation.parsedValues, runtime)
         return 0
+      } catch FaceTimeCoreError.contactsAccessDenied {
+        Console.printError("")
+        Console.printError("⚠️  Contacts access required.")
+        Console.printError("")
+        Console.printError("To grant access:")
+        Console.printError("   1. Open System Settings")
+        Console.printError("   2. Go to Privacy & Security → Contacts")
+        Console.printError("   3. Click the [+] button and add 'Terminal'")
+        Console.printError("   4. Try running this command again")
+        Console.printError("")
+        return 1
       } catch {
         Console.printError(error.localizedDescription)
         return 1

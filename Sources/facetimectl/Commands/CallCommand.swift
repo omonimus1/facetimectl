@@ -27,41 +27,54 @@ enum CallCommand {
         "facetimectl call \"John Doe\"",
       ]
     ) { values, runtime in
-      guard let recipient = values.argument(0) else {
-        throw FaceTimeCoreError.invalidRecipient("")
-      }
-      
-      let isAudio = values.flag("audio")
-      let controller = FaceTimeController()
-      
-      // Check if recipient is a name - search contacts
-      var finalRecipient = recipient
-      if !recipient.contains("@") && !recipient.hasPrefix("+") && !recipient.allSatisfy({ $0.isNumber }) {
-        if let contact = try await controller.searchContactByName(recipient) {
-          if !contact.phoneNumbers.isEmpty {
-            finalRecipient = contact.phoneNumbers[0]
-          } else if !contact.emailAddresses.isEmpty {
-            finalRecipient = contact.emailAddresses[0]
-          }
-          if runtime.outputFormat == .standard {
-            Swift.print("📞 Calling \(contact.name) at \(finalRecipient)...")
-          }
-        } else {
-          throw FaceTimeCoreError.contactNotFound(recipient)
+      do {
+        guard let recipient = values.argument(0) else {
+          throw FaceTimeCoreError.invalidRecipient("")
         }
-      }
-      
-      let request = CallRequest(recipient: finalRecipient, isVideo: !isAudio, isAudio: isAudio)
-      try await controller.makeCall(request)
-      
-      if runtime.outputFormat == .standard {
-        if isAudio {
-          Swift.print("📞 Initiating audio call to \(finalRecipient)")
-        } else {
-          Swift.print("📹 Initiating video call to \(finalRecipient)")
+        
+        let isAudio = values.flag("audio")
+        let controller = FaceTimeController()
+        
+        // Check if recipient is a name - search contacts
+        var finalRecipient = recipient
+        if !recipient.contains("@") && !recipient.hasPrefix("+") && !recipient.allSatisfy({ $0.isNumber }) {
+          if let contact = try await controller.searchContactByName(recipient) {
+            if !contact.phoneNumbers.isEmpty {
+              finalRecipient = contact.phoneNumbers[0]
+            } else if !contact.emailAddresses.isEmpty {
+              finalRecipient = contact.emailAddresses[0]
+            }
+            if runtime.outputFormat == .standard {
+              Swift.print("📞 Calling \(contact.name) at \(finalRecipient)...")
+            }
+          } else {
+            throw FaceTimeCoreError.contactNotFound(recipient)
+          }
         }
-      } else if runtime.outputFormat == .quiet {
-        // Silent
+        
+        let request = CallRequest(recipient: finalRecipient, isVideo: !isAudio, isAudio: isAudio)
+        try await controller.makeCall(request)
+        
+        if runtime.outputFormat == .standard {
+          if isAudio {
+            Swift.print("📞 Initiating audio call to \(finalRecipient)")
+          } else {
+            Swift.print("📹 Initiating video call to \(finalRecipient)")
+          }
+        } else if runtime.outputFormat == .quiet {
+          // Silent
+        }
+      } catch FaceTimeCoreError.contactsAccessDenied {
+        Console.printError("")
+        Console.printError("⚠️  Contacts access not granted.")
+        Console.printError("")
+        Console.printError("To grant access:")
+        Console.printError("   1. Open System Settings")
+        Console.printError("   2. Go to Privacy & Security → Contacts")
+        Console.printError("   3. Click the [+] button and add 'Terminal'")
+        Console.printError("   4. Try running this command again")
+        Console.printError("")
+        throw FaceTimeCoreError.contactsAccessDenied
       }
     }
   }

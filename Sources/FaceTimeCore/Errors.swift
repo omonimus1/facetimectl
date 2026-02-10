@@ -15,7 +15,7 @@ public enum FaceTimeCoreError: LocalizedError, Sendable {
     case .accessDenied:
       return "Access to FaceTime is denied. Please grant permissions in System Settings."
     case .contactsAccessDenied:
-      return "Access to Contacts is denied. Please grant permissions in System Settings → Privacy & Security → Contacts."
+      return "Access Denied"
     case .appleEventsAccessDenied:
       return "Automation access is denied. Please grant permissions in System Settings → Privacy & Security → Automation."
     case .invalidRecipient(let recipient):
